@@ -1,5 +1,7 @@
 package space.valarts.rinon2238.jetpackcomposelessonbasic
 
+import android.content.res.Configuration.UI_MODE_NIGHT_NO
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -14,6 +16,7 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import space.valarts.rinon2238.jetpackcomposelessonbasic.ui.theme.JetpackComposeLessonBasicTheme
@@ -45,7 +48,7 @@ private fun MyApp() {
 
 @Composable
 fun Greetings() {
-    val list: List<String> = List(1000) { "soy source. id: $it" }
+    val list: List<String> = List(1000) { "$it" }
 
     Surface(color = MaterialTheme.colors.background) {
         LazyColumn(modifier = Modifier.padding(bottom = 4.dp)) {
@@ -79,8 +82,10 @@ fun Greeting(name: String) {
                 .weight(1f)
                 .padding(bottom = extraBottomPadding.coerceAtLeast(0.dp))
             ) {
-                Text(text = "This is")
-                Text(text = "$name!")
+                Text(text = "This is No.")
+                Text(text = "$name!", style = MaterialTheme.typography.h4.copy(
+                    fontWeight = FontWeight.ExtraBold
+                ))
             }
 
             OutlinedButton(
@@ -111,6 +116,12 @@ fun OnboardingScreen(onContinueClick: () -> Unit) {
 }
 
 @Preview(showBackground = true, widthDp = 320)
+@Preview(
+    showBackground = true,
+    widthDp = 320,
+    uiMode = UI_MODE_NIGHT_YES,
+    name = "DefaultPreviewDark"
+)
 @Composable
 fun DefaultPreview() {
     JetpackComposeLessonBasicTheme {
